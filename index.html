@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- 导入样式 -->
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css"/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-aside width="200px">
+            <el-tree
+                    :data="treeData"
+                    :props="props"
+                    show-checkbox
+                    :render-after-expand="renderAfterExpand"
+                    @check-change="handleCheckChange"
+            />
+        </el-aside>
+        <el-container>
+            <el-header>Total:{{totalTask}}</el-header>
+            <el-main>
+                <el-card :body-style="{padding:'10px'}" shadow="always" v-for="(item,index) in itemList">
+                    <el-row align='middle'>
+                        <el-col :span="18">
+                            <span>{{item.data}}</span>
+                        </el-col>
+                        <el-col :span="4">
+                            <el-input-number v-model="item.num" :min="1" :max="10000" size="mini"/>
+                        </el-col>
+                        <el-col :span="2" v-loading="item.running">
+                            <el-icon>
+                                <circle-check-filled/>
+                            </el-icon>
+                        </el-col>
+                    </el-row>
+                </el-card>
+            </el-main>
+            <el-footer>
+                <el-button @click="clear">清除</el-button>
+                <el-button @click="run" type="primary">确定</el-button>
+            </el-footer>
+        </el-container>
+    </el-container>
+</div>
+
+<!-- 导入 Vue 3 -->
+<script src="//unpkg.com/vue@next"></script>
+<!-- 导入组件库 -->
+<script src="//unpkg.com/element-plus"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
