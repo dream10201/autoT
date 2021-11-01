@@ -2,22 +2,32 @@ let Main = {
     created: () => {
     },
     methods: {
-        run(){
+        run() {
             let it = 1000;
+            let dt = 2000;
+            this.btnDisabled = true;
             this.itemList.filter((val, index, arr) => {
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.itemList[index]["running"] = true;
-                },it);
+                    setTimeout(() => {
+                        this.itemList[index]["running"] = false;
+                        document.getElementsByClassName(Math.round(Math.random() * 10) ? "success" : "fail")[index].classList.remove("hidden");
+                        if (index === this.itemList.length - 1) {
+                            this.btnDisabled = false;
+                        }
+                    }, dt);
+                }, it);
+                it += 3000;
                 return false
             });
         },
-        clear(){
-            this.itemList=[];
+        clear() {
+            this.itemList = [];
         },
         handleCheckChange(data, checked) {
             if (!data.hasOwnProperty("children")) {
                 if (checked) {
-                    this.itemList.push({"num": 1, "data": data["label"], "key": data["key"],"running":false});
+                    this.itemList.push({"num": 1, "data": data["label"], "key": data["key"], "running": false});
                 } else {
                     this.itemList = this.itemList.filter((val, index, arr) => {
                         if (val.key !== data["key"]) {
@@ -37,6 +47,7 @@ let Main = {
                 label: 'label',
             },
             renderAfterExpand: false,
+            btnDisabled: false,
             loading: true,
             itemList: [],
             totalTask: 0,

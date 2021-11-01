@@ -1,5 +1,16 @@
-.el-row{
+.el-row {
 }
-.el-card{
+
+.el-card {
     margin-bottom: 3px;
+}
+
+.c-green {
+    color: #67c23a;
+}
+.c-red{
+    color: #ff253a;
+}
+.hidden{
+    display: none;
 }

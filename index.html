@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <!-- 导入样式 -->
+    <link href="css/all.css" rel="stylesheet"/>
     <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css"/>
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -31,16 +31,15 @@
                             <el-input-number v-model="item.num" :min="1" :max="10000" size="mini"/>
                         </el-col>
                         <el-col :span="2" v-loading="item.running">
-                            <el-icon>
-                                <circle-check-filled/>
-                            </el-icon>
+                            <i class="success hidden c-green fas fa-check-circle"></i>
+                            <i class="fail hidden c-red fas fa-times-circle"></i>
                         </el-col>
                     </el-row>
                 </el-card>
             </el-main>
             <el-footer>
-                <el-button @click="clear">清除</el-button>
-                <el-button @click="run" type="primary">确定</el-button>
+                <el-button :disabled="btnDisabled" @click="clear">清除</el-button>
+                <el-button :disabled="btnDisabled" @click="run" type="primary">确定</el-button>
             </el-footer>
         </el-container>
     </el-container>
